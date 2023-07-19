@@ -16,10 +16,11 @@ class MessageController extends Controller
     public function index(User $user, Request $request)
     {
         $authUser = $request->user();
-        return view('message', [
+
+        return view('message.message', [
             'selectedUser' => $user,
             'users'        => User::get(),
-            'messages'      => Message::where(function ($q) use ($authUser, $user) {
+            'messages'     => Message::where(function ($q) use ($authUser, $user) {
                 $q->where('from_user_id', $authUser->id)
                   ->where('to_user_id', $user->id);
             })->orWhere(function ($q) use ($authUser, $user) {
@@ -53,11 +54,14 @@ class MessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(User $user, Request $request, $id)
     {
-        //
+        $message = Message::findOrFail($id);
+        $message->message = $request->get('message');
+        $message->save();
+        return redirect()->route('message', $user->id);
     }
 
     /**
@@ -65,10 +69,12 @@ class MessageController extends Controller
      *
      * @param  int  $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(User $user, $id)
     {
-        //
+        Message::findOrFail($id)->delete();
+
+        return redirect()->route('message', $user->id);
     }
 }

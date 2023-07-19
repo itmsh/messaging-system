@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('{user}/messages', MessageController::class)
-         ->except(['update', 'create', 'show', 'edit'])
+         ->except(['create', 'show', 'edit'])
          ->name('index','message');
 });
 
