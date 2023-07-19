@@ -21,10 +21,13 @@
                             @endforeach
                         </div>
 
-                        <div class="col-span-2 bg-gray-100 p-2">
+                        <div class="col-span-2 bg-blue-100 p-2">
                             <div class="row-auto">
                                 @foreach($messages as $message)
-                                    <div class="bg-gray-200 p-2 mt-2 {{(auth()->user()->id == $message->from_user_id or auth()->user()->id == $message->to_user_id) ? "text-right": ""}}">
+                                    <div class="bg-gray-100 text-sm text-gray-500 mt-2 p-2">
+                                        {{$message->created_at->diffForHumans()}}
+                                    </div>
+                                    <div class="bg-gray-100 p-2 {{auth()->user()->id == $message->from_user_id ? "text-right": ""}}">
                                         {{$message->message}}
                                     </div>
                                 @endforeach
@@ -36,13 +39,13 @@
                                     <div class="p-2 col-span-2">
                                         <div class="col-sm-12">
                                             <input type="text"
-                                                   class="form-control @error('message') is-invalid @enderror"
+                                                   class="w-full form-control @error('message') is-invalid @enderror"
                                                    name="message" placeholder="Message">
                                         </div>
                                     </div>
                                     <div class="p-2">
                                         <div class="col-sm-9">
-                                            <button type="submit" class="btn btn-success btn-block">Send</button>
+                                            <button type="submit" class="bg-blue-400 p-2 w-full">Send</button>
                                         </div>
                                     </div>
                                 </div>
