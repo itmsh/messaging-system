@@ -5,7 +5,7 @@
         <div class="p-2 col-span-2">
             <div class="col-sm-12">
                 <input type="text"
-                       class="w-full form-control @error('message') is-invalid @enderror"
+                       class="w-full form-control dark:text-gray-800 dark:bg-gray-400 @error('message') is-invalid @enderror"
                        name="message" placeholder="Message">
             </div>
         </div>

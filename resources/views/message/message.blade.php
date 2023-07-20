@@ -13,7 +13,7 @@
                     <div class="grid grid-cols-3 gap-4 mt-2">
                         @include('message.partials.list-user', ['user' => $users])
 
-                        <div class="col-span-2 bg-blue-100 p-2">
+                        <div class="col-span-2 bg-blue-100 p-2 dark:bg-gray-900">
                             <div class="row-auto">
                                 @include('message.partials.list-message', ['messages' => $messages])
                             </div>

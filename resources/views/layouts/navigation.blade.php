@@ -16,6 +16,12 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <div class="shrink-0 flex items-center">
+                    <button onclick="toggleDarkMode()" class="border-r-2 text-gray-100 dark:text-gray-600 dark:bg-gray-200 text-sm bg-gray-400 p-2">
+                        Toggle dark mode
+                    </button>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
