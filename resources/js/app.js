@@ -22,3 +22,8 @@ window.toggleDarkMode = function() {
 	}
 	location.reload();
 }
+
+Echo.channel(`message`)
+	.listen('NewMessage', (e) => {
+		console.log(e.order.name);
+	});
