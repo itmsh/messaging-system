@@ -6,3 +6,4 @@
 - php artisan serve
 - npm install
 - npm run dev
+- run **php artisan websockets:serve** in new terminal window to get real time message

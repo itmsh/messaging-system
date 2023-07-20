@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewMessage;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -44,6 +45,8 @@ class MessageController extends Controller
         $message->from_user_id = $request->user()->id;
         $message->to_user_id   = $user->id;
         $message->save();
+
+        event(new NewMessage($user));
 
         return redirect()->route('message', $user->id);
     }
